@@ -1,0 +1,20 @@
+torchrun --nproc_per_node=4 --master_port=10086 train_evaluator.py \
+    --model_name_or_path codellama/CodeLlama-13b-Instruct-hf \
+    --data_path ./data/spider_evaluator_train_cls_exec.json \
+    --output_dir /research/nfs_sun_397/chen.8336/codellama/spider-evaluator-cls-exec-42 \
+    --num_train_epochs 1 \
+    --per_device_train_batch_size 1 \
+    --per_device_eval_batch_size 1 \
+    --gradient_accumulation_steps 32 \
+    --evaluation_strategy "no" \
+    --save_strategy "steps" \
+    --save_steps 1000 \
+    --save_total_limit 1 \
+    --learning_rate 1e-5 \
+    --warmup_ratio 0.03 \
+    --lr_scheduler_type "cosine" \
+    --logging_steps 5 \
+    --bf16 True \
+    --tf32 True \
+    --seed 42 \
+    --ddp_find_unused_parameters False

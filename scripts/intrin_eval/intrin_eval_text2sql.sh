@@ -1,0 +1,11 @@
+python -u intrin_eval.py \
+    --test_fname data/spider_intrin_eval.json \
+    --log_fname spider_intrin_eval_cl13b.json \
+    --dataset_name spider \
+    --db_path ../spider/database \
+    --evaluator_name codellama/CodeLlama-13b-Instruct-hf \
+    --retriever_name bm25 \
+    --retriever_corpus_eval data/spider_evaluator_train_prompt.json \
+    --retrieve_k 1 \
+    --evaluation_config evaluation_configs/pro.json \
+    --seed 42
