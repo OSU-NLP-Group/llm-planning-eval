@@ -1,0 +1,5 @@
+{
+    "_from_model_config": true,
+    "do_sample": false,
+    "num_return_sequences": 1
+}

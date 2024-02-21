@@ -1,0 +1,6 @@
+{
+    "_from_model_config": true,
+    "do_sample": true,
+    "temperature": 0.6,
+    "num_return_sequences": 5
+}
