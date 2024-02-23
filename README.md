@@ -90,6 +90,9 @@ For GSM8K, we simply extracted the numerical answers at the end of each annotate
 
 We include example scripts for all our experiments in `scripts/`. The LoRA weights of our fine-tuned LLMs can be accessed [here](https://buckeyemailosu-my.sharepoint.com/:f:/g/personal/chen_8336_buckeyemail_osu_edu/Et4r77yq4WJIjaSHfh-D1mEBZDpGA69KWvQZqizBD7_tBQ?e=RcHN5S).
 
+#### Extension to Other LLMs
+If you would like to extend our framework to other LLMs, you may implement a new generator/evaluator class or a new planning method under the corresponding directories and import them in the functions `select_models`/`select_method`. You may start your implementation by copying one of the provided source code files and modify the classes/funtions accordingly.
+
 ## 5 Citation
 Please cite our paper with the following bibtex:
 ```

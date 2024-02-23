@@ -15,12 +15,13 @@ def select_models(args):
     generator = None
     evaluator = None
 
-    if args.generator_name.startswith("gpt"):
-        from generators.openai_generator import OpenaiGenerator
-        generator = OpenaiGenerator(args.generator_name)
-    else:
-        from generators.hf_generator import HFGenerator
-        generator = HFGenerator(args.generator_name, device="cuda")
+    # if args.generator_name.startswith("gpt"):
+    #     from generators.openai_generator import OpenaiGenerator
+    #     generator = OpenaiGenerator(args.generator_name)
+    # else:
+    
+    from generators.hf_generator import HFGenerator
+    generator = HFGenerator(args.generator_name, device="cuda")
 
     if args.evaluator_name == "oracle":
         from evaluators.oracle_evaluator_py import OracleEvaluatorPy

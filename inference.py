@@ -15,16 +15,17 @@ def select_models(args):
     retriever_gen = None
     retriever_eval = None
 
-    if args.generator_name.startswith("gpt"):
-        from generators.openai_generator import OpenaiGenerator
-        generator = OpenaiGenerator(args.generator_name)
+    # if args.generator_name.startswith("gpt"):
+    #     from generators.openai_generator import OpenaiGenerator
+    #     generator = OpenaiGenerator(args.generator_name)
+    # else:
+
+    if args.generator_peft_dir == "":
+        from generators.hf_generator import HFGenerator
+        generator = HFGenerator(args.generator_name, device="cuda")
     else:
-        if args.generator_peft_dir == "":
-            from generators.hf_generator import HFGenerator
-            generator = HFGenerator(args.generator_name, device="cuda")
-        else:
-            from generators.hf_generator import HFLoraGenerator
-            generator = HFLoraGenerator(args.generator_name, args.generator_peft_dir, device="cuda")
+        from generators.hf_generator import HFLoraGenerator
+        generator = HFLoraGenerator(args.generator_name, args.generator_peft_dir, device="cuda")
 
     if args.evaluator_name == "oracle":
         from evaluators.oracle_evaluator import OracleEvaluator
@@ -39,9 +40,9 @@ def select_models(args):
     elif args.evaluator_name.startswith("gpt"):
         from evaluators.openai_evaluator import OpenaiEvaluator
         evaluator = OpenaiEvaluator(args.evaluator_name, args.db_path)
-    elif "starcoder" in args.evaluator_name:
-        from evaluators.starcoder_evaluator import StarcoderEvaluator
-        evaluator = StarcoderEvaluator(args.evaluator_name, args.db_path, device="cuda")
+    # elif "starcoder" in args.evaluator_name:
+    #     from evaluators.starcoder_evaluator import StarcoderEvaluator
+    #     evaluator = StarcoderEvaluator(args.evaluator_name, args.db_path, device="cuda")
 
     if args.retriever_name == "bm25":
         from retrievers.bm25 import BM25Retriever
